@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青春祭 2025 - 文化祭の想いを、カタチに。</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        /* ファーストビュー */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="%23ffffff" opacity="0.03"/><circle cx="75" cy="25" r="0.3" fill="%23ffffff" opacity="0.02"/><circle cx="50" cy="50" r="0.4" fill="%23ffffff" opacity="0.03"/><circle cx="25" cy="75" r="0.2" fill="%23ffffff" opacity="0.02"/><circle cx="75" cy="75" r="0.5" fill="%23ffffff" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 32px rgba(240, 147, 251, 0.3);
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(240, 147, 251, 0.4);
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2d3748;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* サービス概要セクション */
+        .overview {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .stat-description {
+            font-size: 0.95rem;
+            color: #718096;
+        }
+
+        /* 特徴セクション */
+        .features {
+            background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) rotate(0.5deg);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .feature-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* プラン・料金セクション */
+        .pricing {
+            background: linear-gradient(135deg, #fef7e0 0%, #fed7aa 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        .pricing-card.premium {
+            border: 2px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.premium:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            margin-bottom: 1rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .price-period {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-left: 0.5rem;
+        }
+
+        .plan-description {
+            color: #718096;
+            font-size: 1rem;
+        }
+
+        .pricing-features {
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            padding: 0.75rem 0;
+            color: #4a5568;
+            border-bottom: 1px solid #f7fafc;
+            font-size: 1rem;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .delivery-process,
+        .domain-info {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .delivery-process h4,
+        .domain-info h4 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .process-step {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .domain-example {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+            font-weight: 600;
+            color: #667eea;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pricing-benefits {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+        }
+
+        .pricing-benefits h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-desc {
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+        .portfolio {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px) rotate(-1deg);
+        }
+
+        .portfolio-item:nth-child(even):hover {
+            transform: translateY(-10px) rotate(1deg);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .portfolio-description {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ セクション */
+        .faq {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #2d3748;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-answer {
+            padding: 0 2rem 1.5rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* 最終CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>') repeat;
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        /* フッター */
+        .footer {
+            background: #2d3748;
+            color: #a0aec0;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            background: #4a5568;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .contact-label {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            color: white;
+            font-weight: 600;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #4a5568;
+            font-size: 0.9rem;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .features-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card,
+            .portfolio-item {
+                margin: 0 auto;
+                max-width: 400px;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* スクロール時のアニメーション */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- ファーストビュー -->
+    <section class="hero">
+        <div class="hero-content fade-in-up">
+            <h1>文化祭の想いを、カタチに。</h1>
+            <p class="hero-subtitle">千葉の高校生による、高校生のための文化祭サイト制作<br>スマホ対応・おしゃれデザインで、来場者に最高の第一印象を</p>
+            <a href="#contact" class="cta-primary">制作を依頼する</a>
+        </div>
+    </section>
+
+    <!-- サービス概要 -->
+    <section class="section overview">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">なぜ文化祭にウェブサイトが必要？</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">78%</div>
+                    <div class="stat-label">事前チェック</div>
+                    <div class="stat-description">来場者がスマホで事前情報をチェック</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">3倍</div>
+                    <div class="stat-label">来場者増</div>
+                    <div class="stat-description">公式サイトありの文化祭は平均3倍の集客</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">満足度向上</div>
+                    <div class="stat-description">事前情報があると来場者満足度が向上</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴 -->
+    <section class="section features">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">高校生だからできる、4つの強み</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">同世代目線のデザイン</h3>
+                    <p class="feature-description">高校生が実際に使いたくなる、SNS映えするおしゃれなデザイン。InstagramやTikTokとの連携も完璧です。</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">学生に優しい価格設定</h3>
+                    <p class="feature-description">限られた文化祭予算でも安心。一般制作会社の1/3の価格で、高品質なサイトをお届けします。</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">スピード対応</h3>
+                    <p class="feature-description">急な文化祭準備にも対応。最短3日でサイト公開可能。LINEでのやり取りでスムーズな制作進行。</p>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">面倒な設定不要</h3>
+                    <p class="feature-description">Googleサイトで納品するので、サーバー契約や難しい設定は一切不要。リンクを受け取るだけですぐ使えます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- プラン・料金 -->
+    <section class="section pricing">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">シンプル料金プラン</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card basic animate-on-scroll">
+                    <div class="pricing-header">
+                        <div class="plan-name">基本プラン</div>
+                        <div class="plan-price">
+                            <span class="price-amount">¥15,000</span>
+                            <span class="price-period">〜</span>
+                        </div>
+                        <div class="plan-description">Googleサイトで簡単納品</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">✓ レスポンシブデザイン</div>
+                        <div class="feature-item">✓ Googleサイトで納品</div>
+                        <div class="feature-item">✓ サーバー契約不要</div>
+                        <div class="feature-item">✓ リンクを受け取るだけで完成</div>
+                        <div class="feature-item">✓ 制作期間：最短3日</div>
+                        <div class="feature-item">✓ 1ヶ月間修正対応無料</div>
+                    </div>
+                    <div class="delivery-process">
+                        <h4>納品の流れ</h4>
+                        <div class="process-step">1. GoogleサイトにHTML埋め込み</div>
+                        <div class="process-step">2. 全画面表示リンク取得</div>
+                        <div class="process-step">3. URLをそのままお渡し</div>
+                    </div>
+                </div>
+                
+                <div class="pricing-card premium animate-on-scroll">
+                    <div class="popular-badge">人気</div>
+                    <div class="pricing-header">
+                        <div class="plan-name">独自ドメインプラン</div>
+                        <div class="plan-price">
+                            <span class="price-amount">¥25,000</span>
+                            <span class="price-period">〜</span>
+                        </div>
+                        <div class="plan-description">オリジナルURLで信頼感UP</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">✓ 基本プランの全機能</div>
+                        <div class="feature-item">✓ 独自ドメイン設定代行</div>
+                        <div class="feature-item">✓ https://○○高校文化祭.com 形式</div>
+                        <div class="feature-item">✓ ドメイン取得サポート</div>
+                        <div class="feature-item">✓ SSL証明書対応</div>
+                        <div class="feature-item">✓ より高い信頼性</div>
+                    </div>
+                    <div class="domain-info">
+                        <h4>ドメイン例</h4>
+                        <div class="domain-example">chiba-festival2025.com</div>
+                        <div class="domain-example">seisun-sai.jp</div>
+                        <small>※ドメイン代（年額1,200円〜）は別途</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pricing-benefits animate-on-scroll">
+                <h3>なぜGoogleサイトなの？</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚀</div>
+                        <div class="benefit-title">最短当日納品</div>
+                        <div class="benefit-desc">複雑な設定不要で、制作から納品まで超スピード</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📝</div>
+                        <div class="benefit-title">後から編集可能</div>
+                        <div class="benefit-desc">依頼者も簡単に文字や画像を変更できる</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💡</div>
+                        <div class="benefit-title">メンテナンス楽々</div>
+                        <div class="benefit-desc">Googleが管理するので安心・安全</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section portfolio">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">制作事例</h2>
+        
+        <div class="portfolio-grid">
+            <a href="ex1.html" class="portfolio-item animate-on-scroll">
+                <div class="portfolio-image">○○高校 文化祭2024</div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">クラス企画紹介サイト</h3>
+                    <p class="portfolio-description">各クラスの出し物を分かりやすく紹介。来場者数20%アップを実現。</p>
+                </div>
+            </a>
+            
+            <a href="ex2.html" class="portfolio-item animate-on-scroll">
+                <div class="portfolio-image">△△学園 青春祭</div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">タイムテーブル特化型</h3>
+                    <p class="portfolio-description">ステージイベントの時間管理が楽に。混雑緩和にも貢献。</p>
+                </div>
+            </a>
+            
+            <a href="ex3.html" class="portfolio-item animate-on-scroll">
+                <div class="portfolio-image">□□高等学校 秋祭</div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">SNS連携型サイト</h3>
+                    <p class="portfolio-description">Instagram投稿の自動表示で、リアルタイムな文化祭の様子を発信。</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- FAQ -->
+    <section class="section faq">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">よくある質問</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">制作にはどのくらいの期間が必要ですか？</div>
+                    <div class="faq-answer">通常5〜7日程度です。急ぎの場合は最短3日での対応も可能です。まずはお気軽にご相談ください。</div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">予算はどのくらいかかりますか？</div>
+                    <div class="faq-answer">基本プラン15,000円〜、独自ドメインプラン25,000円〜です。学生割引もご用意しています。詳細はお問い合わせください。</div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">Googleサイトってどんなメリットがあるの？</div>
+                    <div class="faq-answer">サーバー契約不要で、リンクを受け取るだけですぐ使えます。後から自分で簡単に編集もでき、Googleが管理するので安心・安全です。</div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">独自ドメインにするメリットは？</div>
+                    <div class="faq-answer">「○○高校文化祭.com」のようなオリジナルURLで、より信頼感がアップします。SNSでの拡散時も覚えやすく、プロフェッショナルな印象を与えられます。</div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">スマホ対応はされていますか？</div>
+                    <div class="faq-answer">もちろんです！すべてのサイトでスマホ・タブレット対応を標準装備。来場者の大部分がスマホからアクセスすることを想定して設計しています。</div>
+                </div>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">制作後の修正は可能ですか？</div>
+                    <div class="faq-answer">はい、制作後1ヶ月間は無料で修正対応いたします。また、Googleサイトなので依頼者側でも簡単に文字や画像の変更が可能です。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最終CTA -->
+    <section id="contact" class="section final-cta">
+        <div class="container">
+            <div class="final-cta-content">
+                <h2>あなたの文化祭を、もっと特別に。</h2>
+                <p>同世代だからこそ分かる「本当に欲しい」サイトを制作します</p>
+                <a href="https://lin.ee/d36L9Fx" class="cta-primary">今すぐ制作を依頼する</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title">青春祭 2025</h3>
+            <p class="footer-description">千葉英和高校生徒会副会長による文化祭サイト制作サービス<br>高校生の、高校生による、高校生のためのウェブ制作</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-label">お問い合わせ</div>
+                    <div class="contact-value"><a href="https://lin.ee/d36L9Fx"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/en.png" alt="公式LINE" height="36" border="0"></a></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">制作期間</div>
+                    <div class="contact-value">最短3日〜1週間</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">対応エリア</div>
+                    <div class="contact-value">千葉県内中心</div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 青春祭公式サイト制作代行. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // アニメーション対象の要素を監視
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQのアコーディオン機能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isVisible = answer.style.display === 'block';
+                
+                // 全てのFAQを閉じる
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.style.display = 'none';
+                });
+                
+                // クリックされたFAQを開く/閉じる
+                if (!isVisible) {
+                    answer.style.display = 'block';
+                }
+            });
+        });
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
